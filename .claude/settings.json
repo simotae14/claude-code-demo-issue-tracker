@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    // Array of permission rules to allow tool use
+    "allow": ["Bash(npm run *)", "Bash(git commit *)"],
+
+    // Array of permission rules to deny tool use
+    "deny": ["Bash(git push *)"],
+
+    // Array of permission rules to ask confirmation before tool use
+    "ask": ["Bash(rm *)", "Bash(mv *)"],
+
+    // "default", "plan", "auto", "dontAsk", "bypassPermissions"
+    "defaultMode": "acceptEdits"
+  }
+}
