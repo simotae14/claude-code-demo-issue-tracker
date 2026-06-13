@@ -2,6 +2,7 @@ import type { Issue, Status } from "./types";
 
 class IssueStore {
   private issues = new Map<string, Issue>();
+  private counter = 0;
 
   constructor() {
     this.seed();
@@ -19,6 +20,7 @@ class IssueStore {
     const status = input.status ?? "backlog";
     const issue: Issue = {
       id: crypto.randomUUID(),
+      number: ++this.counter,
       title: input.title,
       description: input.description ?? "",
       status,

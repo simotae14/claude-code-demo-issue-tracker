@@ -72,6 +72,14 @@ export default function Board() {
     setIssues((prev) => [...prev, created]);
   }
 
+  async function handleAddToColumn(status: Status, issueTitle: string) {
+    const created = await api<Issue>("/api/issues", {
+      method: "POST",
+      body: JSON.stringify({ title: issueTitle, status }),
+    });
+    setIssues((prev) => [...prev, created]);
+  }
+
   async function handleStatusChange(id: string, status: Status) {
     const updated = await api<Issue>(`/api/issues/${id}`, {
       method: "PATCH",
@@ -151,8 +159,10 @@ export default function Board() {
                 key={s.key}
                 status={s.key}
                 label={s.label}
+                color={s.color}
                 issues={byStatus[s.key]}
                 onStatusChange={handleStatusChange}
+                onAdd={handleAddToColumn}
               />
             ))}
           </div>

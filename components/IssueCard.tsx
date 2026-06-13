@@ -19,6 +19,9 @@ export default function IssueCard({ issue, onStatusChange }: Props) {
     transition,
   };
 
+  const statusConfig = STATUSES.find((s) => s.key === issue.status)!;
+  const numStr = `#${String(issue.number).padStart(3, "0")}`;
+
   return (
     <div
       ref={setNodeRef}
@@ -27,18 +30,26 @@ export default function IssueCard({ issue, onStatusChange }: Props) {
       {...attributes}
       {...listeners}
     >
-      <div className="title">{issue.title}</div>
-      <select
-        value={issue.status}
-        onPointerDown={(e) => e.stopPropagation()}
-        onChange={(e) => onStatusChange(issue.id, e.target.value as Status)}
+      <div className="card-number">{numStr}</div>
+      <div className="card-title">{issue.title}</div>
+      <div
+        className="status-badge"
+        style={{ color: statusConfig.color, borderColor: `${statusConfig.color}55` }}
       >
-        {STATUSES.map((s) => (
-          <option key={s.key} value={s.key}>
-            {s.label}
-          </option>
-        ))}
-      </select>
+        <span className="status-badge-dot" style={{ background: statusConfig.color }} />
+        {statusConfig.label}
+        <select
+          value={issue.status}
+          onPointerDown={(e) => e.stopPropagation()}
+          onChange={(e) => onStatusChange(issue.id, e.target.value as Status)}
+        >
+          {STATUSES.map((s) => (
+            <option key={s.key} value={s.key}>
+              {s.label}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
