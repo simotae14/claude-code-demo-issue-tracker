@@ -2,7 +2,8 @@
 name: deploy
 description: Deploys our codebase to either staging or production.
 model: sonnet
-allowed-tools: [Bash(npm run:*)]
+hooks:
+  - PostTooluse
 ---
 
 # Deploy
