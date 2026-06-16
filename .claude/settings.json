@@ -5,5 +5,19 @@
       "mcp__linear-server__get_issue",
       "Bash(bun run typecheck)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun run typecheck",
+            "statusMessage": "Running typecheck..."
+          }
+        ]
+      }
+    ]
   }
 }

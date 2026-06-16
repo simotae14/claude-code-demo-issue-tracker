@@ -2,7 +2,6 @@
 name: deploy
 description: Deploys our codebase to either staging or production.
 model: sonnet
-context: fork
 ---
 
 # Deploy
