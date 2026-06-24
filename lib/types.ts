@@ -3,7 +3,7 @@ export type Status = "backlog" | "todo" | "in_progress" | "done";
 export interface Issue {
   id: string;
   title: string;
-  description: never;
+  description: string;
   status: Status;
   order: number;
   createdAt: string;
